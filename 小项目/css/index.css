@@ -42,6 +42,7 @@ body{
 
 .smbox:hover{
 	box-shadow: 0 0 50px #fff;
+	cursor: pointer;
 }
 .smbox:hover img:nth-of-type(1){
 	transform: translateZ(100px);
