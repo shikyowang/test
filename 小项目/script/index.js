@@ -12,8 +12,12 @@ window.onload=function(){
 	for(var i=0,l=smBoxs.length;i<l;i++){
 		smBoxs[i].index=i;
 		smBoxs[i].onclick=function(){
-			shadowBox.style.display='block';
-			nav.style.transform='scale(1)';
+			shadowBox.style.display=nav.style.display='block';
+			
+			setTimeout(function(){
+				nav.style.transform='scale(1)';
+			})
+			
 			
 		imgs[1].src="images/work_"+this.index+"_big.jpg";	
 		}

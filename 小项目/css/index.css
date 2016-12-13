@@ -69,6 +69,7 @@ body{
 	margin-left: -300px;
 	margin-top: -200px; 
 	transition: 0.3s;
+	display: none;
 	transform: scale(0);
 	transform-origin: center;
 }
