@@ -8,7 +8,7 @@ body{
 }
 .imgWall{
 	width: 1080px; 
-	transform: translate(50%,220px) rotateX(45deg) rotateZ(45deg) ;
+	transform: translate(70%,200px) rotateX(45deg) rotateZ(45deg) ;
 	transform-style: preserve-3d;
 	
 }
@@ -73,10 +73,21 @@ body{
 	transform: scale(0);
 	transform-origin: center;
 }
+.nav .img{
+	perspective: 500px;
+	transform-style: preserve-3d;
+}
 .nav .img img{
 	position: absolute;
 	top: 0;
 	left: 0;
+	transition: transform 0.3s;
+}
+.img img.trogO{
+	transform-origin: left;
+}
+.img img.trogI{
+	transform-origin: right;
 }
 .prev,.next{
 	width: 50px; height: 45px;
