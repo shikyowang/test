@@ -9,7 +9,7 @@ window.onload=function(){
 	var imgsI=nav.querySelectorAll("img")[1];
 	var upIndex=0;
 	var dowIndex=0;
-
+	var canClick=true;
 	shadowBox.style.height=document.querySelector("html").offsetHeight+'px';
 
 	for(var i=0,l=smBoxs.length;i<l;i++){
@@ -35,6 +35,10 @@ window.onload=function(){
 	}
 	
 	next.onclick=function(){						//   点击 下一个  切换
+		if(!canClick){
+			return;
+		}
+		canClick=false;
 		dowIndex=upIndex+1;
 		if(dowIndex==smBoxs.length){
 			dowIndex=0;
@@ -62,20 +66,24 @@ window.onload=function(){
 			endNum2++;
 			if(endNum2==2){
 				imgsI.src="images/work_"+dowIndex+"_big.jpg";  //  将前面的图片地址
-				
+				upIndex++;
+				if(upIndex==smBoxs.length){
+					upIndex=0;
+				}
+				canClick=true;
 			}
-		
 		});
-			upIndex++;
-			if(upIndex==smBoxs.length){
-				upIndex=0;
-			}
+			
 	}
 	/*
 	 *                上     一         个
 	 */
 	var prev=document.querySelector(".prev");
 		prev.onclick=function(){						//   点击 上一个  切换
+		if(!canClick){
+			return ;
+		}
+		canClick=false;
 		dowIndex=upIndex-1;
 		if(dowIndex<0){
 			dowIndex=smBoxs.length-1;
@@ -103,14 +111,15 @@ window.onload=function(){
 			endNum2++;
 			if(endNum2==2){
 				imgsI.src="images/work_"+dowIndex+"_big.jpg";  //  将前面的图片地址
-				
+				upIndex--;
+				if(upIndex<0){
+					upIndex=smBoxs.length-1;
+				}
+				canClick=true;
 			}
-		
+
 		});
-			upIndex--;
-			if(upIndex<0){
-				upIndex=smBoxs.length-1;
-			}
+		
 	}
 
 }
