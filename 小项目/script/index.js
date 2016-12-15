@@ -27,14 +27,41 @@ window.onload=function(){
 		upIndex=this.index;
 		}
 	}
+	/*
+	 *           图       片       预        加         载
+	 */
+	function loadImgs(imgArr,callBack){
+		var loadImg=[];
+		var loadNum=0;
+		
+		for(var i=0,l=imgArr.length;i<l;i++){
+			loadImg[i]=new Image();
+			loadNum++;
+			if(loadNum==imgArr.length){
+				callBack(loadImg);
+			}
+			loadImg[i].src=imgArr[i];
+		}
+	}
+   
+   imgArr=[];
+   for(var i=0,l=smBoxs.length;i<l;i++){
+   	imgArr.push("images/work_"+i+"_big.jpg");
+   }
 
+	loadImgs(imgArr,function(a){
+		nextImg(a);
+		prevImg(a);
+	})
+	
 	shadowBox.onclick=function(){						//   点击 暗背景 
 		this.style.display='none';
 		nav.style.transform='scale(0)';
 		nav.style.display='none';
 	}
 	
-	next.onclick=function(){						//   点击 下一个  切换
+	function nextImg(a){
+		next.onclick=function(){						//   点击 下一个  切换
 		if(!canClick){
 			return;
 		}
@@ -43,7 +70,7 @@ window.onload=function(){
 		if(dowIndex==smBoxs.length){
 			dowIndex=0;
 		}
-		imgsO.src="images/work_"+dowIndex+"_big.jpg";
+		imgsO.src=a[dowIndex].src;
 		imgsI.className=imgsO.className='trogO';
 		imgsI.style.transform="translateX(600px) rotateY(-10deg)";
 // 前面的图，右移、旋转。
@@ -75,10 +102,13 @@ window.onload=function(){
 		});
 			
 	}
+	}
+	
 	/*
 	 *                上     一         个
 	 */
-	var prev=document.querySelector(".prev");
+	function prevImg(a){
+		var prev=document.querySelector(".prev");
 		prev.onclick=function(){						//   点击 上一个  切换
 		if(!canClick){
 			return ;
@@ -88,7 +118,7 @@ window.onload=function(){
 		if(dowIndex<0){
 			dowIndex=smBoxs.length-1;
 		}
-		imgsO.src="images/work_"+dowIndex+"_big.jpg";
+		imgsO.src=a[dowIndex].src;
 		imgsI.className=imgsO.className='trogI';
 		imgsI.style.transform="translateX(-600px) rotateY(10deg)";
 // 前面的图，右移、旋转。
@@ -119,7 +149,9 @@ window.onload=function(){
 			}
 
 		});
-		
 	}
+	
+	}	
+	
 
 }
